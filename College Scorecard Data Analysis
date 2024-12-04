@@ -1,0 +1,74 @@
+---
+title: "College Scorecard Data Analysis"
+author: "Melanie and Ananda"
+date: ""
+output: pdf_document
+---
+```{r}
+library(tidyverse)
+library(ggplot)
+```
+
+# Data
+The dataset used for this analysis is sourced from the [U.S. Department of Education College Scorecard](https://collegescorecard.ed.gov/data/). 
+It includes detailed metrics on colleges and universities across the United States, such as tuition costs, graduation rates, median earnings of graduates, and student demographics.
+
+The specific dataset used for this analysis contains variables relevant to predicting the median earnings of graduates 10 years after enrollment.
+
+# Research Question/Purpose
+**Research Question:** What factors are most predictive of the median earnings of graduates 10 years after enrollment?  
+**Purpose:** To understand how institutional characteristics and student demographics influence graduate financial outcomes.
+
+# Response Variable
+- **Variable Name: (`MD_EARN_WNE_P10`)**
+- **Type:** Numeric  
+- **Units:** U.S. dollars  
+- **Range:** \$0 to \$200,000  
+- **Description:** This variable represents the median earnings of students who received federal financial aid 10 years after enrollment.
+
+# Explanatory Variables
+1. **Graduation Rate (`C100_4`)**  
+   - **Type:** Numeric  
+   - **Units:** Percentage (0-100%)  
+   - **Range:** 0% to 100%  
+   - **Description:** The percentage of students who graduate within the standard timeframe.
+
+2. **Average Annual Cost (`NPT4_PUB` `NPT4_PRIV`)**  
+   - **Type:** Numeric  
+   - **Units:** U.S. dollars  
+   - **Range:** \$0 to \$75,000  
+   - **Description:** The average net cost of attending the institution after financial aid.
+
+3. **Institution Type (`CONTROL`)**  
+   - **Type:** Categorical  
+   - **Levels:**  
+     - `1`: Public  
+     - `2`: Private nonprofit  
+     - `3`: Private for-profit  
+   - **Description:** Indicates the type of control of the institution.
+
+4. **Student-to-Faculty Ratio (`STUFACR`)**  
+   - **Type:** Numeric  
+   - **Units:** Ratio (students per faculty member)  
+   - **Range:** 1 to 100  
+   - **Description:** The number of students per faculty member.
+
+
+5. **Region (`REGION`)**  
+   - **Type:** Categorical  
+   - **Levels:** Northeast, Midwest, South, West  
+   - **Description:** The geographic region where the institution is located.
+
+# Exploratory Visualizations
+To explore the relationships between variables of interest, two visualizations were created:
+
+```{r}
+scorecard <- read.csv("MERGED2022_23_PP.csv")
+
+
+new_scorecard <- select(scorecard, MD_EARN_WNE_P10, C100_4, NPT4_PUB, NPT4_PRIV, CONTROL, STUFACR, REGION)
+```
+
+## Scatterplot: 
+
+
